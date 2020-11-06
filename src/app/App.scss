@@ -23,6 +23,15 @@ $color: #c0c8a6;
       min-height: 250px;
       border-radius: 10px;
       margin: 10px;
+      .item_parent {
+        box-sizing: border-box;
+        position: relative;
+        .item_delete_child {
+          position: absolute;
+          margin: 0 10px 0 0;
+          right: 0;
+        }
+      }
     }
   }
 
