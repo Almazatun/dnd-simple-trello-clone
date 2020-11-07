@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, CSSProperties, useState} from 'react';
 import './App.scss';
 import {v1} from "uuid";
 import {
@@ -28,9 +28,11 @@ interface IItem {
 
 function App() {
 
-    let Todo: string = '_1';
-    let Progress: string = '_2';
-    let Done: string = '_3';
+    let keyColumn = ['_1', '_2', '_3'];
+
+    // let Todo: string = '_1';
+    // let Progress: string = '_2';
+    // let Done: string = '_3';
 
 
     let item1: IItem = {
@@ -49,25 +51,38 @@ function App() {
     let Items = [item1, item2, item3]
 
     const [columns, setColumns] = useState<IColumns>({
-        [Todo]: {
+        [keyColumn[0]]: {
             title: 'Todo',
             items: Items
         },
-        [Progress]: {
+        [keyColumn[1]]: {
             title: 'In Progress',
             items: []
         },
-        [Done]: {
+        [keyColumn[2]]: {
             title: 'Done',
             items: []
         },
     })
     const [title, setTitle] = useState<string>('')
 
-    function onChangeTitle (event: ChangeEvent<HTMLInputElement>){
+    function onChangeTitle(event: ChangeEvent<HTMLInputElement>) {
         setTitle(event.target.value)
     }
+
     //////////////////////////////////////////////////////
+
+    function addNewColumn() {
+        let newIndex = Math.floor(Math.random() * 10000);
+        keyColumn.push(`_${newIndex}`);
+        let lastItemInColumn = keyColumn[keyColumn.length - 1];
+        let newColumn = {title: title, items: []}
+        setColumns({
+            ...columns,
+            [lastItemInColumn]: newColumn
+        })
+        setTitle('')
+    }
 
 
     function addItem(ColumnID: string, title: string) {
@@ -161,9 +176,24 @@ function App() {
         }
     }
 
+    let btnStyleAddNewColumn: CSSProperties = {
+        height: '40px',
+        fontFamily: "sans-serif",
+        backgroundColor: '#db71d2',
+        outline: "none",
+        border: '0px solid'
+    }
+
 
     return (
         <div className="App">
+            <Editable
+                nameButton={'Add new column 🤡'}
+                title={title}
+                onChangeTitle={onChangeTitle}
+                addNewColumn={addNewColumn}
+                styleBtn={btnStyleAddNewColumn}
+            />
             <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
                 {Object.entries(columns).map(([id, column]) => {
                     // console.log('Column', column)
@@ -185,10 +215,12 @@ function App() {
                                         >
                                             <>
                                                 <div style={{margin: '10px', position: "relative", textAlign: 'end'}}>
-                                                    <Editable droppableIDColumn={provided.droppableProps["data-rbd-droppable-id"]}
-                                                              title={title}
-                                                              onChangeTitle={onChangeTitle}
-                                                              addNewItem={addItem}
+                                                    <Editable
+                                                        nameButton={'Add new item ✔'}
+                                                        droppableIDColumn={provided.droppableProps["data-rbd-droppable-id"]}
+                                                        title={title}
+                                                        onChangeTitle={onChangeTitle}
+                                                        addNewItem={addItem}
                                                     />
                                                 </div>
 
@@ -218,8 +250,9 @@ function App() {
                                                                     >
                                                                         <div className={'item_parent'}>
                                                                             <span>{item.name}</span>
-                                                                            <button onClick={() => deleteItem(columnID, item.id)}
-                                                                                    className={'item_delete_child'}>
+                                                                            <button
+                                                                                onClick={() => deleteItem(columnID, item.id)}
+                                                                                className={'item_delete_child'}>
                                                                                 {'❌'}
                                                                             </button>
                                                                         </div>

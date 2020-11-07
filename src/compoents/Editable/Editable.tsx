@@ -1,10 +1,13 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, CSSProperties, useState} from 'react';
 
 interface IEditable {
-    title: string
+    title: string,
+    nameButton: string,
     onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void
-    droppableIDColumn: string
-    addNewItem: (droppableIDColumn: string, title: string) => void
+    droppableIDColumn?: string
+    addNewItem?: (droppableIDColumn: string, title: string) => void
+    addNewColumn?: () => void
+    styleBtn?: CSSProperties | undefined
 }
 
 export const Editable = React.memo((props: IEditable) => {
@@ -12,10 +15,15 @@ export const Editable = React.memo((props: IEditable) => {
     const [open, setOpen] = useState<boolean>(false)
 
     function addNewItem () {
-        if (props.title.trim() !== '') {
-            props.addNewItem(props.droppableIDColumn, props.title);
+        if (props.addNewItem && props.title.trim() !== '') {
+            props.addNewItem!(props.droppableIDColumn!, props.title);
             setOpen(false)
         }
+        if (props.addNewColumn && props.title.trim() !== '') {
+            props.addNewColumn();
+            setOpen(false)
+        }
+
     }
 
     function closeEditMode () {
@@ -35,7 +43,8 @@ export const Editable = React.memo((props: IEditable) => {
                 </>
                 :
                 <button
-                    onClick={() =>setOpen(!open)}>{'Add new item ➕'}</button>}
+                    style={props.styleBtn && props.styleBtn}
+                    onClick={() =>setOpen(!open)}>{props.nameButton}</button>}
         </div>
     )
 })
