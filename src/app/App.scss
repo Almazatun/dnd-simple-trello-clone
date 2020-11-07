@@ -18,6 +18,12 @@ $color: #c0c8a6;
     display: flex;
     flex-direction: column;
     height: 100%;
+    .content_child_title {
+      display: flex;
+      flex-direction: row;
+      box-sizing: border-box;
+      align-items: center;
+    }
     .droppable {
       width: 300px;
       min-height: 250px;

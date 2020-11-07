@@ -84,7 +84,12 @@ function App() {
         setTitle('')
     }
 
+    function deleteColumn (ColumnID: string) {
+        let {[ColumnID]: {}, ...rest} = columns
+        setColumns(rest)
+    }
 
+    //////////////////////////////////////////////////////
     function addItem(ColumnID: string, title: string) {
         let newItem: IItem = {id: v1(), name: title}
 
@@ -204,7 +209,11 @@ function App() {
                                 console.log('snapshot', snapshot)
                                 return (
                                     <div className={'content'}>
-                                        <h3 style={{margin: '20px'}}>{column.title}</h3>
+                                        <div className={'content_child_title'}>
+                                            <h3 style={{margin: '20px'}}>{column.title}</h3>
+                                            <button onClick={() =>deleteColumn(provided.droppableProps["data-rbd-droppable-id"])}>{'❌'}</button>
+                                        </div>
+
                                         <div
                                             ref={provided.innerRef}
                                             {...provided.droppableProps}
