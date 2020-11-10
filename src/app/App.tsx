@@ -30,11 +30,6 @@ function App() {
 
     let keyColumn = ['_1', '_2', '_3'];
 
-    // let Todo: string = '_1';
-    // let Progress: string = '_2';
-    // let Done: string = '_3';
-
-
     let item1: IItem = {
         id: v1(),
         name: "Item 1"
