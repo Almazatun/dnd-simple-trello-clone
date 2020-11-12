@@ -1,50 +1,46 @@
 import React, {ChangeEvent, CSSProperties, useState} from 'react';
+import {Input} from "../common/Input/Input";
+import style from './Editable.module.scss'
 
 interface IEditable {
     title: string,
-    nameButton: string,
+    name?: string,
     onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void
     droppableIDColumn?: string
-    addNewItem?: (droppableIDColumn: string, title: string) => void
-    addNewColumn?: () => void
-    styleBtn?: CSSProperties | undefined
+    renameTitle?: (droppableIDColumn: string, title: string) => void
+    setTitle?: (title: string) => void
 }
 
 export const Editable = React.memo((props: IEditable) => {
 
-    const [open, setOpen] = useState<boolean>(false)
+    let [editMode, setEditMode] = useState<boolean>(false)
 
-    function addNewItem () {
-        if (props.addNewItem && props.title.trim() !== '') {
-            props.addNewItem!(props.droppableIDColumn!, props.title);
-            setOpen(false)
-        }
-        if (props.addNewColumn && props.title.trim() !== '') {
-            props.addNewColumn();
-            setOpen(false)
-        }
+    const onEditMode = () => {
+        props.setTitle!(props.name!)
+        setEditMode(true);
+    };
+    const offEditMode = () => {
+        props.renameTitle!(props.droppableIDColumn!, props.title)
+        setEditMode(false);
+        props.setTitle!('')
+    };
 
-    }
 
-    function closeEditMode () {
-        setOpen(false)
-    }
 
     return (
-        <div>
-            {open ?
-                <>
-                <input type="text"
-                           value={props.title}
-                           onChange={props.onChangeTitle}
+        <div style={{textAlign: "left"}}>
+            {editMode ?
+
+                <Input type="text"
+                       value={props.title}
+                       onChange={props.onChangeTitle}
+                       onBlur={offEditMode}
+                       autoFocus={true}
                 />
-                <button onClick={addNewItem}>{'✔'}</button>
-                <button onClick={closeEditMode}>{'❌'}</button>
-                </>
+
                 :
-                <button
-                    style={props.styleBtn && props.styleBtn}
-                    onClick={() =>setOpen(!open)}>{props.nameButton}</button>}
+                <span className={style.listTitle} onClick={onEditMode}>{props.name}</span>
+            }
         </div>
     )
 })
