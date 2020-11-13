@@ -1,9 +1,10 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps} from "react";
 import style from './Button.module.scss'
 
-type ButtonT = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
-    & {title: string}
+interface IButtonProps extends  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+    title: string
+}
 
-export const Button: React.FC<ButtonT> = ({title ,...props}) => {
+export const Button: React.FC<IButtonProps> = ({title ,...props}) => {
     return <button {...props} className={style.btn}>{title}</button>
 }

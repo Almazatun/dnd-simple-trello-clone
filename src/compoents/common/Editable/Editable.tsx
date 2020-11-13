@@ -1,5 +1,5 @@
 import React, {ChangeEvent, CSSProperties, useState} from 'react';
-import {Input} from "../common/Input/Input";
+import {Input} from "../Input/Input";
 import style from './Editable.module.scss'
 
 interface IEditable {

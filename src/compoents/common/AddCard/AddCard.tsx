@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import style from './AddCard.module.scss'
-import {Button} from "../common/Button/Button";
-import {Input} from "../common/Input/Input";
+import {Button} from "../Button/Button";
+import {Input} from "../Input/Input";
 
 type AddCardT = {
     title: string

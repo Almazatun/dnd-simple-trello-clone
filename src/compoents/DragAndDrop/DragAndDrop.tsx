@@ -2,7 +2,7 @@ import React, {ChangeEvent, CSSProperties} from 'react';
 import {List} from "../List/List";
 import {IInitialItemState} from "../../state/reducers/itemReducer";
 import {DropResult} from "react-beautiful-dnd";
-import {Editable} from "../Editable/Editable";
+import {Editable} from "../common/Editable/Editable";
 import style from './DragAndDrop.module.scss'
 
 interface IDragAndDrop {

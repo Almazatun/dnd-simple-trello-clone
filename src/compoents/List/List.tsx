@@ -1,10 +1,10 @@
 import React, {ChangeEvent} from 'react';
 import {DragDropContext, Droppable, DroppableProvided, DroppableStateSnapshot, DropResult} from "react-beautiful-dnd";
-import {Editable} from "../Editable/Editable";
+import {Editable} from "../common/Editable/Editable";
 import {IInitialItemState} from "../../state/reducers/itemReducer";
 import {Items} from "../Items/Items";
 import style from './List.module.scss'
-import {AddCard} from "../AddCard/AddCard";
+import {AddCard} from "../common/AddCard/AddCard";
 
 interface IList {
     items: IInitialItemState
