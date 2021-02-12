@@ -1,9 +1,14 @@
 .dnd_content {
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width:100%;
   justify-content: center;
   //border: 1px solid red;
   margin: auto;
   height: auto;
+
+  .add_new_list{
+    position: absolute;
+    left: 10%;
+  }
 }

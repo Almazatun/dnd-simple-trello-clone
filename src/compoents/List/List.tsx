@@ -30,12 +30,6 @@ export const List: React.FC<IList> = (props) => {
                         console.log('snapshot', snapshot)
                         return (
                             <div className={style.content}>
-                                <div className={style.content_child_title}>
-                                    <h3 style={{margin: '20px'}}>{i.list}</h3>
-                                    <button
-                                        onClick={() => props.deleteColumn(provided.droppableProps["data-rbd-droppable-id"])}>{'❌'}</button>
-                                </div>
-
                                 <div
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
@@ -56,7 +50,10 @@ export const List: React.FC<IList> = (props) => {
                                                 renameTitle={props.renameList}
                                                 setTitle={props.clearForm}
                                             />
-                                            <button>{'Edit'}</button>
+                                            <button
+                                                style={{height: '25px'}}
+                                                onClick={() => props.deleteColumn(provided.droppableProps["data-rbd-droppable-id"])}
+                                            >{'❌'}</button>
                                         </div>
                                         <Items items={i} columnID={provided.droppableProps["data-rbd-droppable-id"]}
                                                deleteItem={props.deleteItem}

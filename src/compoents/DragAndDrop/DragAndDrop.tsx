@@ -1,9 +1,11 @@
-import React, {ChangeEvent, CSSProperties} from 'react';
+import React, {ChangeEvent, CSSProperties, useState} from 'react';
 import {List} from "../List/List";
 import {IInitialItemState} from "../../state/reducers/itemReducer";
 import {DropResult} from "react-beautiful-dnd";
-import {Editable} from "../common/Editable/Editable";
 import style from './DragAndDrop.module.scss'
+import {Button} from "../common/Button/Button";
+import {Modal} from "../../features/Modal/Modal";
+import {FormModal} from "../common/FormModal/FormModal";
 
 interface IDragAndDrop {
     title: string,
@@ -20,6 +22,12 @@ interface IDragAndDrop {
 
 export const DragAndDrop: React.FC<IDragAndDrop> = (props) => {
 
+    const [show, setShow] = useState<boolean>(false)
+
+    function handleShow  () {
+        setShow(!show)
+    }
+
     let btnStyleAddNewColumn: CSSProperties = {
         height: '40px',
         fontFamily: "sans-serif",
@@ -30,13 +38,8 @@ export const DragAndDrop: React.FC<IDragAndDrop> = (props) => {
 
     return (
         <div className={style.dnd_content}>
-            <div>
-                <Editable
-                    name={'Add new column 🤡'}
-                    title={props.title}
-                    onChangeTitle={props.onChangeTitle}
-                />
-                <button>{'edit'}</button>
+            <div className={style.add_new_list}>
+                <Button onClick={handleShow} title={'Add new list ➕'} />
             </div>
 
             <List items={props.items}
@@ -49,6 +52,19 @@ export const DragAndDrop: React.FC<IDragAndDrop> = (props) => {
                   clearForm={props.clearForm}
                   renameList={props.renameList}
             />
+            <Modal
+                show={show}
+                modalClosed={handleShow}
+                onChangeTitle={() => console.log('hello')}
+            >
+                <FormModal
+                modalClosed={handleShow}
+                name={"Add new list"}
+                title={props.title}
+                onChangeTitle={props.clearForm}
+                callback={props.addNewList}
+                />
+            </Modal>
         </div>
     )
 }
