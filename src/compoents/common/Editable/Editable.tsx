@@ -1,17 +1,19 @@
 import React, {ChangeEvent, CSSProperties, useState} from 'react';
+
 import {Input} from "../Input/Input";
 import style from './Editable.module.scss'
 
-interface IEditable {
+interface Props {
     title: string,
     name?: string,
-    onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void
     droppableIDColumn?: string
+
+    onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void
     renameTitle?: (droppableIDColumn: string, title: string) => void
     setTitle?: (title: string) => void
 }
 
-export const Editable = React.memo((props: IEditable) => {
+export const Editable = React.memo((props: Props) => {
 
     let [editMode, setEditMode] = useState<boolean>(false)
 

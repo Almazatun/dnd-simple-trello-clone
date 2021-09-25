@@ -1,12 +1,12 @@
 import React, {CSSProperties} from 'react';
-import style from './Background.module.scss'
 
-interface IBackgroundProps {
+interface Props {
     show: boolean,
-    clicked: any
+
+    clicked: () => void
 }
 
-export const Background: React.FC<IBackgroundProps> = (props) => {
+export const Background: React.FC<Props> = (props) => {
 
     const backgroundStyle: CSSProperties = {
         width: "100%",
