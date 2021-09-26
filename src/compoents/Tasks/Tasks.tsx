@@ -4,7 +4,6 @@ import {Draggable} from "react-beautiful-dnd";
 import {List} from "../../reducer/types";
 import {TaskContent} from "../TaskContent/TaskContent";
 import {Modal} from "../Modal/Modal";
-import {FormModal} from "../common/FormModal/FormModal";
 
 interface Props {
   list: List
