@@ -11,14 +11,13 @@ interface Props {
   listTitle: string
   lists: Lists
 
-  deleteColumn: (ColumnID: string) => void,
+  deleteList: (ColumnID: string) => void,
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void
-  addItem: (ColumnID: string, title: string) => void
-  deleteItem: (ColumnID: string, itemID: string) => void
+  addTask: (ColumnID: string, title: string) => void
+  deleteTask: (ColumnID: string, itemID: string) => void
   onDragEnd: (result: DropResult) => void
   clearForm: () => void
   renameList: (idList: string, title: string) => void
-
 }
 
 export const List: React.FC<Props> = (props) => {
@@ -65,18 +64,18 @@ export const List: React.FC<Props> = (props) => {
                       />
                       <button
                         style={{height: '25px'}}
-                        onClick={() => props.deleteColumn(provided.droppableProps["data-rbd-droppable-id"])}
+                        onClick={() => props.deleteList(provided.droppableProps["data-rbd-droppable-id"])}
                       >{'❌'}</button>
                     </div>
                     <Tasks list={list} columnID={provided.droppableProps["data-rbd-droppable-id"]}
-                           deleteItem={props.deleteItem}
+                           deleteItem={props.deleteTask}
                     />
                     {provided.placeholder}
                     <FormAddNewTask
                       droppableIDColumn={provided.droppableProps["data-rbd-droppable-id"]}
                       taskTitle={taskTitle}
                       onChangeTaskTitle={onChangeTaskTitle}
-                      addNewTask={props.addItem}
+                      addNewTask={props.addTask}
                       clearForm={clearTaskTitle}
                     />
                   </>

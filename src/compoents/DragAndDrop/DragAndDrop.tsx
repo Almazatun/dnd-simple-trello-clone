@@ -1,25 +1,18 @@
 import React, {ChangeEvent, CSSProperties, useState} from 'react';
-import {DropResult} from "react-beautiful-dnd";
 
 import style from './DragAndDrop.module.scss'
 import {Button} from "../common/Button/Button";
 import {Modal} from "../Modal/Modal";
 import {FormModal} from "../common/FormModal/FormModal";
-import {Lists} from "../../reducer/types";
-import {List} from "../List/List";
+import {ListContainer} from "../List/ListContainer";
 
 interface Props {
   listTitle: string,
-  lists: Lists,
 
   onChangeListTitle: (event: ChangeEvent<HTMLInputElement>) => void
-  onDragEnd: (result: DropResult) => void
-  addTask: (listId: string, title: string) => void
-  deleteTask: (ListId: string, itemID: string) => void
   addNewList: () => void
-  deleteList: (idList: string) => void
   clearForm: () => void
-  renameList: (idList: string, title: string) => void
+  setNewTitleList: (listTitle: string) => void
 }
 
 export const DragAndDrop: React.FC<Props> = (props) => {
@@ -43,21 +36,15 @@ export const DragAndDrop: React.FC<Props> = (props) => {
       <div className={style.add_new_list}>
         <Button onClick={handleShow} title={'Add new list ➕'}/>
       </div>
-
-      <List lists={props.lists}
-            deleteList={props.deleteList}
-            listTitle={props.listTitle}
-            onChangeTitle={props.onChangeListTitle}
-            addTask={props.addTask}
-            deleteTask={props.deleteTask}
-            onDragEnd={props.onDragEnd}
-            clearForm={props.clearForm}
-            renameList={props.renameList}
+      <ListContainer listTitle={props.listTitle}
+                     onChangeListTitle={props.onChangeListTitle}
+                     clearForm={props.clearForm}
+                     setNewTitleList={props.setNewTitleList}
       />
       <Modal
         show={show}
         modalClosed={handleShow}
-        onChangeTitle={() => console.log('hello')}
+        onChangeTitle={() => {}}
       >
         <FormModal
           modalClosed={handleShow}
