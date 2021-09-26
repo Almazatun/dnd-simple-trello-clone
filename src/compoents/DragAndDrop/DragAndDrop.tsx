@@ -45,11 +45,11 @@ export const DragAndDrop: React.FC<Props> = (props) => {
       </div>
 
       <List lists={props.lists}
-            deleteColumn={props.deleteList}
+            deleteList={props.deleteList}
             listTitle={props.listTitle}
             onChangeTitle={props.onChangeListTitle}
-            addItem={props.addTask}
-            deleteItem={props.deleteTask}
+            addTask={props.addTask}
+            deleteTask={props.deleteTask}
             onDragEnd={props.onDragEnd}
             clearForm={props.clearForm}
             renameList={props.renameList}
