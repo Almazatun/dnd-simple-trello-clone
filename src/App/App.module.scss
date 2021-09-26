@@ -4,9 +4,11 @@ $color: #b4c3e6;
   background-color: $color;
   min-height: 100vh;
   font-family: sans-serif;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
   h1,h2,h3 {
     margin: 0;
   }
-
 }
 
