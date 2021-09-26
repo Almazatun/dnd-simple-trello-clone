@@ -9,28 +9,21 @@ import {Lists} from "../../reducer/types";
 
 interface Props {
   listTitle: string
+  taskTitle: string
   lists: Lists
 
   deleteList: (ColumnID: string) => void,
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void
+  onChangeTaskTitle: (event: ChangeEvent<HTMLInputElement>) => void
   addTask: (ColumnID: string, title: string) => void
   deleteTask: (ColumnID: string, itemID: string) => void
   onDragEnd: (result: DropResult) => void
   clearForm: () => void
+  clearTaskTitle: () => void
   renameList: (idList: string, title: string) => void
 }
 
 export const List: React.FC<Props> = (props) => {
-
-  const [taskTitle, setTaskTitle] = useState<string>('');
-
-  const onChangeTaskTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    setTaskTitle(event.target.value)
-  }
-
-  const clearTaskTitle= () => {
-    setTaskTitle('')
-  }
 
   const DroppableTSX = <>
     {Object.entries(props.lists).map(([id, list]) => {
@@ -73,10 +66,10 @@ export const List: React.FC<Props> = (props) => {
                     {provided.placeholder}
                     <FormAddNewTask
                       droppableIDColumn={provided.droppableProps["data-rbd-droppable-id"]}
-                      taskTitle={taskTitle}
-                      onChangeTaskTitle={onChangeTaskTitle}
+                      taskTitle={props.taskTitle}
+                      onChangeTaskTitle={props.onChangeTaskTitle}
                       addNewTask={props.addTask}
-                      clearForm={clearTaskTitle}
+                      clearForm={props.clearTaskTitle}
                     />
                   </>
                 </div>

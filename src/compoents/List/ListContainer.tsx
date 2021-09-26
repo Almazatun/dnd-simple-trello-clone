@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../store/store";
 import {Destination, Lists, SourceFrom} from "../../reducer/types";
@@ -15,6 +15,16 @@ interface Props {
 }
 
 export const ListContainer: React.FC<Props> = (props: Props) => {
+  const [taskTitle, setTaskTitle] = useState<string>('');
+
+  const onChangeTaskTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    setTaskTitle(event.target.value)
+  }
+
+  const clearTaskTitle= () => {
+    setTaskTitle('')
+  }
+
   const lists = useSelector<AppStateType, Lists>(state => state.Tasks);
   const dispatch = useDispatch();
 
@@ -63,6 +73,7 @@ export const ListContainer: React.FC<Props> = (props: Props) => {
 
   return <List
     listTitle={props.listTitle}
+    taskTitle={taskTitle}
     lists={lists}
     deleteList={deleteList}
     onChangeTitle={props.onChangeListTitle}
@@ -71,5 +82,7 @@ export const ListContainer: React.FC<Props> = (props: Props) => {
     onDragEnd={onDragEnd}
     clearForm={props.clearForm}
     renameList={renameList}
+    clearTaskTitle={clearTaskTitle}
+    onChangeTaskTitle={onChangeTaskTitle}
   />
 }
