@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Draggable} from "react-beautiful-dnd";
 
 import {List} from "../../reducer/types";
@@ -16,7 +16,7 @@ interface Props {
   showTaskFormContent: (title: string) => void
 }
 
-export const Tasks: React.FC<Props> = (props) => {
+export const Tasks: React.FC<Props> = (props: Props) => {
 
   const TasksTSX = props.list.tasks.map((task, index) => {
 
