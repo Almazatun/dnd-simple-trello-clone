@@ -8,23 +8,15 @@ import {Modal} from "../Modal/Modal";
 interface Props {
   list: List
   columnID: string
+  showTaskForm: boolean
+  taskTitle: string
 
-  deleteItem: (ColumnID: string, itemID: string) => void
+  handleShow: () => void
+  deleteTask: (ColumnID: string, itemID: string) => void
+  showTaskFormContent: (title: string) => void
 }
 
 export const Tasks: React.FC<Props> = (props) => {
-
-  const [showTaskForm, setShowTaskForm] = useState<boolean>(false);
-  const [taskTitle, setTaskTitle] = useState<string>('');
-
-  function handleShow() {
-    setShowTaskForm(!showTaskForm)
-  }
-
-  function showTaskFormContent(title: string) {
-    setTaskTitle(title)
-    setShowTaskForm(true)
-  }
 
   const TasksTSX = props.list.tasks.map((task, index) => {
 
@@ -46,23 +38,23 @@ export const Tasks: React.FC<Props> = (props) => {
                 borderRadius: '4px',
                 ...provided.draggableProps.style
               }}
-              onDoubleClick={() => showTaskFormContent(task.name)}
+              onDoubleClick={() => props.showTaskFormContent(task.name)}
             >
               <div className={'item_parent'}>
                 <span style={{margin: '0 10px 0 10px'}}>{task.name}</span>
                 <button
-                  onClick={() => props.deleteItem(props.columnID, task.id)}
+                  onClick={() => props.deleteTask(props.columnID, task.id)}
                   className={'item_delete_child'}>
                   {'❌'}
                 </button>
               </div>
               <Modal
-                show={showTaskForm}
-                modalClosed={handleShow}
+                show={props.showTaskForm}
+                modalClosed={props.handleShow}
                 onChangeTitle={() => {
                 }}
               >
-                <TaskContent taskTitle={taskTitle}/>
+                <TaskContent taskTitle={props.taskTitle}/>
               </Modal>
             </div>
           )

@@ -1,11 +1,11 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import {DragDropContext, Droppable, DroppableProvided, DroppableStateSnapshot, DropResult} from "react-beautiful-dnd";
 
 import style from './List.module.scss'
 import {Editable} from "../common/Editable/Editable";
-import {Tasks} from "../Tasks/Tasks";
 import {FormAddNewTask} from "../FormAddNewTask/FormAddNewTask";
 import {Lists} from "../../reducer/types";
+import {TasksContainer} from "../Tasks/TasksContainer";
 
 interface Props {
   listTitle: string
@@ -60,8 +60,10 @@ export const List: React.FC<Props> = (props) => {
                         onClick={() => props.deleteList(provided.droppableProps["data-rbd-droppable-id"])}
                       >{'❌'}</button>
                     </div>
-                    <Tasks list={list} columnID={provided.droppableProps["data-rbd-droppable-id"]}
-                           deleteItem={props.deleteTask}
+                    <TasksContainer list={list}
+                                    columnID={provided.droppableProps["data-rbd-droppable-id"]}
+                                    deleteTask={props.deleteTask}
+
                     />
                     {provided.placeholder}
                     <FormAddNewTask
