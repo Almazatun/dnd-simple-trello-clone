@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/dnd-simple-trello-clone%20/static/css/main.ee218572.chunk.css",
-    "main.js": "/dnd-simple-trello-clone%20/static/js/main.6a179d37.chunk.js",
-    "main.js.map": "/dnd-simple-trello-clone%20/static/js/main.6a179d37.chunk.js.map",
-    "runtime-main.js": "/dnd-simple-trello-clone%20/static/js/runtime-main.e10cd71c.js",
-    "runtime-main.js.map": "/dnd-simple-trello-clone%20/static/js/runtime-main.e10cd71c.js.map",
-    "static/js/2.75b36b06.chunk.js": "/dnd-simple-trello-clone%20/static/js/2.75b36b06.chunk.js",
-    "static/js/2.75b36b06.chunk.js.map": "/dnd-simple-trello-clone%20/static/js/2.75b36b06.chunk.js.map",
-    "index.html": "/dnd-simple-trello-clone%20/index.html",
-    "static/css/main.ee218572.chunk.css.map": "/dnd-simple-trello-clone%20/static/css/main.ee218572.chunk.css.map",
-    "static/js/2.75b36b06.chunk.js.LICENSE.txt": "/dnd-simple-trello-clone%20/static/js/2.75b36b06.chunk.js.LICENSE.txt"
+    "main.css": "/dnd-simple-trello-clone/static/css/main.ee218572.chunk.css",
+    "main.js": "/dnd-simple-trello-clone/static/js/main.6a179d37.chunk.js",
+    "main.js.map": "/dnd-simple-trello-clone/static/js/main.6a179d37.chunk.js.map",
+    "runtime-main.js": "/dnd-simple-trello-clone/static/js/runtime-main.5090550a.js",
+    "runtime-main.js.map": "/dnd-simple-trello-clone/static/js/runtime-main.5090550a.js.map",
+    "static/js/2.75b36b06.chunk.js": "/dnd-simple-trello-clone/static/js/2.75b36b06.chunk.js",
+    "static/js/2.75b36b06.chunk.js.map": "/dnd-simple-trello-clone/static/js/2.75b36b06.chunk.js.map",
+    "index.html": "/dnd-simple-trello-clone/index.html",
+    "static/css/main.ee218572.chunk.css.map": "/dnd-simple-trello-clone/static/css/main.ee218572.chunk.css.map",
+    "static/js/2.75b36b06.chunk.js.LICENSE.txt": "/dnd-simple-trello-clone/static/js/2.75b36b06.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e10cd71c.js",
+    "static/js/runtime-main.5090550a.js",
     "static/js/2.75b36b06.chunk.js",
     "static/css/main.ee218572.chunk.css",
     "static/js/main.6a179d37.chunk.js"
